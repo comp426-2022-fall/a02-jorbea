@@ -19,9 +19,19 @@ if (args.h) {
 	process.exit(0);
 };
 
+// Echo JSON
+if (args.j) {
+	console.log(args);
+}
+
 // Timezone
 import moment from 'moment-timezone';
-const timezone = moment.tz.guess();
+let timezone = null;
+if (args.z) {
+	timezone = args.z;
+} else {
+	timezone = moment.tz.guess();
+}
 console.log(timezone);
 
 // Latitude & Longitude
@@ -44,16 +54,12 @@ if (args['e']) {
 
 // Fetch
 import fetch from 'node-fetch';
-// const response = await fetch(
-	// 'https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + 
-	// '&daily=precipitation_hours&timezone=America%2FNew_York'
-// );
 const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&daily=precipitation_hours&timezone=America%2FNew_York');
 const data = await response.json();
 console.log(data);
 
 // Response
-const days = args.d; 
+const days = args.d;
 if (days == 0) {
   console.log("today.");
 } else if (days > 1) {
