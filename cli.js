@@ -53,6 +53,10 @@ if (args['e']) {
 	longitude = args['w'];
 	console.log('-w ' + longitude);
 }
+latitude = latitude.toFixed(2);
+console.log(latitude);
+longitude = longitude.toFixed(2);
+console.log(longitude);
 
 // Fetch
 import fetch from 'node-fetch';
