@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// Dependencies
+// Parse Arguments
 import minimist from 'minimist';
 const args = minimist(process.argv.slice(2));
 console.log(args);
@@ -22,7 +22,9 @@ if (args.h) {
 // Echo JSON
 if (args.j) {
 	console.log(args);
+	process.exit(0);
 }
+
 
 // Timezone
 import moment from 'moment-timezone';
@@ -41,11 +43,11 @@ if (args['n']) {
 	latitude = args['n'];
 	console.log('-n ' + latitude);
 } else if (args['s']) {
-	latitude = args['s'];
+	latitude = args['s'] * (-1);
 	console.log('-s ' + latitude);
 }
 if (args['e']) {
-	longitude = args['e'];
+	longitude = args['e'] * (-1);
 	console.log('-e ' + longitude);
 } else if (args['w']) {
 	longitude = args['w'];
@@ -59,11 +61,17 @@ const data = await response.json();
 console.log(data);
 
 // Response
-const days = args.d;
-if (days == 0) {
-  console.log("today.");
-} else if (days > 1) {
-  console.log("in " + days + " days.");
+let days = null;
+if (args.d) {
+	days = args.d;
 } else {
-  console.log("tomorrow.");
+	days = data['daily']['precipitation_hours'];
+}
+console.log(days);
+if (days == 0) {
+  console.log("You might need your galoshes today.");
+} else if (days > 1) {
+  console.log("You might need your galoshes in " + days + " days.");
+} else {
+  console.log("You might need your galoshes tomorrow.");
 }
