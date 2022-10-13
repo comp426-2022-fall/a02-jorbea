@@ -52,12 +52,13 @@ const data = await response.json();
 
 // Echo JSON
 if (args.j) {
-	if ((args['n'] || args['s']) && (args['e'] || args['w'])) {
-		console.log(data);
-		process.exit(0);
-	} else {
-		console.log('Please provide a latitude and longitude.')
-	}
+	console.log(args);
+//	if ((args['n'] || args['s']) && (args['e'] || args['w'])) {
+//		console.log(data);
+//		process.exit(0);
+//	} else {
+//		console.log('Please provide a latitude and longitude.')
+//	}
 };
 
 // Response
