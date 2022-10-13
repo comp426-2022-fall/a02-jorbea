@@ -63,11 +63,24 @@ if (args.j) {
 // Response
 if (!args.j) {
 	const days = args.d;
+	const precip_of_d = data.daily.precipitation_hours[days];
 	if (days == 0) {
-  		console.log("You might need your galoshes today.");
+		if (precip_of_d) {
+  			console.log("You might need your galoshes today.");
+		} else {
+			console.log("You will not need your galoshes.");
+		}
 	} else if (days > 1) {
-  		console.log("You might need your galoshes in " + days + " days.");
+		if (precip_of_d) {
+  			console.log("You might need your galoshes in " + days + " days.");
+		} else {
+			console.log("You will not need your galoshes in " + days + " days.");
+		}
 	} else {
-  		console.log("You might need your galoshes tomorrow.");
+		if (precip_of_d) {
+  			console.log("You might need your galoshes tomorrow.");
+		} else {
+			console.log("You will not need your galoshes tomorrow.");
+		}
 	};
 };
