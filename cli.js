@@ -52,7 +52,7 @@ const data = await response.json();
 
 // Echo JSON
 if (args.j) {
-	console.log(args);
+	console.log(data);
 //	if ((args['n'] || args['s']) && (args['e'] || args['w'])) {
 //		console.log(data);
 //		process.exit(0);
