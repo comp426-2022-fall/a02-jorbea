@@ -40,8 +40,16 @@ if (args['e']) {
 } else if (args['w']) {
 	longitude = args['w'];
 };
-latitude = Math.round(latitude*100)/100;
-longitude = Math.round(longitude*100)/100;
+if (latitude) {
+	latitude = Math.round(latitude*100)/100;
+} else {
+	latitude = 35;
+}
+if (longitude) {
+	longitude = Math.round(longitude*100)/100;
+} else {
+	longitude = 79;
+}
 
 // Fetch
 import fetch from 'node-fetch';
