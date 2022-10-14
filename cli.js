@@ -60,7 +60,8 @@ const data = await response.json();
 
 // Echo JSON
 if (args.j) {
-	console.log(data);
+	const jsonPretty = JSON.stringify(data, null, 2);  
+	console.log(jsonPretty);
 //	if ((args['n'] || args['s']) && (args['e'] || args['w'])) {
 //		console.log(data);
 //		process.exit(0);
