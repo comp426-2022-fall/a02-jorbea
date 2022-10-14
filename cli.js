@@ -54,7 +54,7 @@ if (longitude) {
 // Fetch
 import fetch from 'node-fetch';
 const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' 
-	+ longitude + '&daily=precipitation_hours&current_weather=true&timezone=America%2FNew_York');
+	+ longitude + '&daily=precipitation_hours&current_weather=true&timezone=' + timezone);
 const data = await response.json();
 
 // Echo JSON
