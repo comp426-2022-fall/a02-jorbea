@@ -54,7 +54,10 @@ if (longitude) {
 // Fetch
 import fetch from 'node-fetch';
 const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' 
-	+ longitude + '&daily=precipitation_hours&current_weather=true&timezone=America%2FNew_York');
+	+ longitude + '&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,'
+	+ 'precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant'
+	+ '&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch'
+	+ '&timezone=America%2FNew_York');
 const data = await response.json();
 
 // Echo JSON
