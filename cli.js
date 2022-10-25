@@ -62,9 +62,9 @@ const data = await response.json();
 
 // Echo JSON
 if (args.j) {
-//	const jsonPretty = JSON.stringify(data, null, 2);  
-//	console.log(jsonPretty);
-	console.log(data);
+	const jsonPretty = JSON.stringify(data, null, 2);  
+	console.log(jsonPretty);
+//	console.log(data);
 	process.exit(0);
 };
 
