@@ -40,16 +40,8 @@ if (args['e']) {
 } else if (args['w']) {
 	longitude = args['w'];
 };
-if (latitude) {
-	latitude = Math.round(latitude*100)/100;
-} else {
-	latitude = 35;
-}
-if (longitude) {
-	longitude = Math.round(longitude*100)/100;
-} else {
-	longitude = 79;
-}
+latitude = Math.round(latitude*100)/100;
+longitude = Math.round(longitude*100)/100;
 
 // Fetch
 import fetch from 'node-fetch';
@@ -62,33 +54,29 @@ const data = await response.json();
 
 // Echo JSON
 if (args.j) {
-//	const jsonPretty = JSON.stringify(data, null, 2);  
-//	console.log(jsonPretty);
 	console.log(data);
 	process.exit(0);
 };
 
 // Response
-if (!args.j) {
-	const days = args.d;
-	const precip_of_d = data.daily.precipitation_hours[days];
-	if (days == 0) {
-		if (precip_of_d) {
-  			console.log("You might need your galoshes today.");
-		} else {
-			console.log("You will not need your galoshes.");
-		}
-	} else if (days > 1) {
-		if (precip_of_d) {
-  			console.log("You might need your galoshes in " + days + " days.");
-		} else {
-			console.log("You will not need your galoshes in " + days + " days.");
-		}
+const days = args.d;
+const precip_of_d = data.daily.precipitation_hours[days];
+if (days == 0) {
+	if (precip_of_d) {
+  		console.log("You might need your galoshes today.");
 	} else {
-		if (precip_of_d) {
-  			console.log("You might need your galoshes tomorrow.");
-		} else {
-			console.log("You will not need your galoshes tomorrow.");
-		}
-	};
+			console.log("You will not need your galoshes.");
+	}
+} else if (days > 1) {
+	if (precip_of_d) {
+  		console.log("You might need your galoshes in " + days + " days.");
+	} else {
+		console.log("You will not need your galoshes in " + days + " days.");
+	}
+} else {
+	if (precip_of_d) {
+  		console.log("You might need your galoshes tomorrow.");
+	} else {
+		console.log("You will not need your galoshes tomorrow.");
+	}
 };
