@@ -59,8 +59,9 @@ const data = await response.json();
 
 // Echo JSON
 if (args.j) {
-	const jsonPretty = JSON.stringify(data, null, 2);  
-	console.log(jsonPretty);
+//	const jsonPretty = JSON.stringify(data, null, 2);  
+//	console.log(jsonPretty);
+	console.log(data);
 	process.exit(0);
 //	if ((args['n'] || args['s']) && (args['e'] || args['w'])) {
 //		console.log(data);
