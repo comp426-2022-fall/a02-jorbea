@@ -66,16 +66,9 @@ if (args.j) {
 //	console.log(jsonPretty);
 	console.log(data);
 	process.exit(0);
-//	if ((args['n'] || args['s']) && (args['e'] || args['w'])) {
-//		console.log(data);
-//		process.exit(0);
-//	} else {
-//		console.log('Please provide a latitude and longitude.')
-//	}
 };
 
 // Response
-if (!args.j) {
 	const days = args.d;
 	const precip_of_d = data.daily.precipitation_hours[days];
 	if (days == 0) {
@@ -97,4 +90,3 @@ if (!args.j) {
 			console.log("You will not need your galoshes tomorrow.");
 		}
 	};
-};
