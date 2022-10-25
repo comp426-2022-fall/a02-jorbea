@@ -66,12 +66,6 @@ if (args.j) {
 //	console.log(jsonPretty);
 	console.log(data);
 	process.exit(0);
-//	if ((args['n'] || args['s']) && (args['e'] || args['w'])) {
-//		console.log(data);
-//		process.exit(0);
-//	} else {
-//		console.log('Please provide a latitude and longitude.')
-//	}
 };
 
 // Response
