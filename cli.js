@@ -40,43 +40,57 @@ if (args['e']) {
 } else if (args['w']) {
 	longitude = args['w'];
 };
-latitude = Math.round(latitude*100)/100;
-longitude = Math.round(longitude*100)/100;
+if (latitude) {
+	latitude = Math.round(latitude*100)/100;
+} else {
+	latitude = 35;
+}
+if (longitude) {
+	longitude = Math.round(longitude*100)/100;
+} else {
+	longitude = 79;
+}
 
 // Fetch
 import fetch from 'node-fetch';
 const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' 
-	+ longitude + '&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,'
-	+ 'precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant'
-	+ '&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch'
-	+ '&timezone=America%2FNew_York');
+	+ longitude + '&daily=precipitation_hours&current_weather=true&timezone=America%2FNew_York');
 const data = await response.json();
 
 // Echo JSON
 if (args.j) {
-	console.log(data);
+	const jsonPretty = JSON.stringify(data, null, 2);  
+	console.log(jsonPretty);
 	process.exit(0);
+//	if ((args['n'] || args['s']) && (args['e'] || args['w'])) {
+//		console.log(data);
+//		process.exit(0);
+//	} else {
+//		console.log('Please provide a latitude and longitude.')
+//	}
 };
 
 // Response
-const days = args.d;
-const precip_of_d = data.daily.precipitation_hours[days];
-if (days == 0) {
-	if (precip_of_d) {
-  		console.log("You might need your galoshes today.");
-	} else {
+if (!args.j) {
+	const days = args.d;
+	const precip_of_d = data.daily.precipitation_hours[days];
+	if (days == 0) {
+		if (precip_of_d) {
+  			console.log("You might need your galoshes today.");
+		} else {
 			console.log("You will not need your galoshes.");
-	}
-} else if (days > 1) {
-	if (precip_of_d) {
-  		console.log("You might need your galoshes in " + days + " days.");
+		}
+	} else if (days > 1) {
+		if (precip_of_d) {
+  			console.log("You might need your galoshes in " + days + " days.");
+		} else {
+			console.log("You will not need your galoshes in " + days + " days.");
+		}
 	} else {
-		console.log("You will not need your galoshes in " + days + " days.");
-	}
-} else {
-	if (precip_of_d) {
-  		console.log("You might need your galoshes tomorrow.");
-	} else {
-		console.log("You will not need your galoshes tomorrow.");
-	}
+		if (precip_of_d) {
+  			console.log("You might need your galoshes tomorrow.");
+		} else {
+			console.log("You will not need your galoshes tomorrow.");
+		}
+	};
 };
